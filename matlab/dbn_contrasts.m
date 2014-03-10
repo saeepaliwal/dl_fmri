@@ -10,6 +10,8 @@ agonists = agonists(idx1:idx2,:);
 antagonists = antagonists(idx1:idx2,:);
 %}
 
+addpath(genpath('../../'));
+
 % Load slice 52
 load agonists_52
 load antagonists_52
@@ -41,7 +43,7 @@ opts.batchsize =   6;
 opts.momentum  =   0.3;
 opts.alpha     =   0.1;
 dbn = dbnsetup(dbn, train_x, opts);
-dbn = dbntrain(dbn, train_x, opts);
+dbn = dbntrain(dbn, train_x, opts)
 
 %% Visualise goodies
 rbmvis(dbn.rbm{1}, train_x, opts)
