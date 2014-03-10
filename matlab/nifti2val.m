@@ -1,6 +1,6 @@
 % This file pulls in vectorized versions of all the subjects, contrast
 % 0021.
-
+addpath('../../spm8')
 % Get all subject names
 [agbpSubjects antbpSubjects] = sandra_subjects;
 
