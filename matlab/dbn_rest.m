@@ -26,8 +26,8 @@ test_x = [agonists(:,end) antagonists(:,end)]';
 %%  ex1 train a 100 hidden unit RBM and visualize its weights
 rand('state',0)
 dbn.sizes = [100];
-opts.numepochs =   40;
-opts.batchsize =   6;
+opts.numepochs =   10;
+opts.batchsize =   1;
 opts.momentum  =   0.3;
 opts.alpha     =   0.1;
 dbn = dbnsetup(dbn, train_x, opts);

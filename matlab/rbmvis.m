@@ -10,7 +10,7 @@ assert(rem(numbatches, 1) == 0, 'numbatches not integer');
 
 kk = randperm(m);
 err = 0;
-for l = 1: opts.batchsize
+for l = 1: numbatches
 	
 	batch = x(kk((l - 1) * opts.batchsize + 1 : l * opts.batchsize), :);
 	
@@ -19,24 +19,26 @@ for l = 1: opts.batchsize
 	v2 = sigmrnd(repmat(rbm.b', opts.batchsize, 1) + h1 * rbm.W);
 	h2 = sigm(repmat(rbm.c', opts.batchsize, 1) + v2 * rbm.W');
 	
-	figure;
+	figure(100);
 	subplot(2,10,1:5);
-	imagesc(reshape(v1(l,:),121,145)); colormap('bone'); colorbar;
+	imagesc(reshape(v1(1,:),121,145)); colormap('bone'); colorbar;
 	
 	subplot(2,10,6:10);
-	imagesc(reshape(v2(l,:),121,145)); colormap('bone'); colorbar;
+	imagesc(reshape(v2(1,:),121,145)); colormap('bone'); colorbar;
 	
 	subplot(2,10,11:15);
-	imagesc(reshape(h1(l,:),10,10)); colormap('bone'); colorbar;
+	imagesc(reshape(h1(1,:),10,10)); colormap('bone'); colorbar;
 	
 	subplot(2,10,16:20);
-	imagesc(reshape(h2(l,:),10,10)); colormap('bone'); colorbar;
+	imagesc(reshape(h2(1,:),10,10)); colormap('bone'); colorbar;
 	
-	figure;
-	visualize(rbm.W',[0 1],121,145);
+	%figure(101);
+	%visualize(rbm.W',[0 1],121,145);
 	
-	figure;
-	plot(rbm.errorRate);
+	%figure;
+	%plot(rbm.errorRate);
 	xlabel('Epochs')
 	ylabel('Average reconstruction error');
+	
+	pause(0.01);
 end

@@ -32,14 +32,14 @@ antagonists(isnan(antagonists)) = 0;
 train_x = [agonists(:,1:end-1) antagonists(:,1:end-1)]';
 test_x = [agonists(:,end) antagonists(:,end)]';
 
-%train_y = antagonists(:,1:5)';
-%test_y = antagonists(:,6)';
+train_y = [ones(1,77) zeros(1,79)]';
+test_y = [1 0]';
 
 %%  ex1 train a 100 hidden unit RBM and visualize its weights
 rand('state',0)
-dbn.sizes = [100];
-opts.numepochs =   40;
-opts.batchsize =   6;
+dbn.sizes = [100 50];
+opts.numepochs =   5;
+opts.batchsize =   1;
 opts.momentum  =   0.3;
 opts.alpha     =   0.1;
 dbn = dbnsetup(dbn, train_x, opts);
@@ -65,7 +65,7 @@ nn.activation_function = 'sigm';
 
 %train nn
 opts.numepochs =  1;
-opts.batchsize = 100;
+opts.batchsize = 6;
 nn = nntrain(nn, train_x, train_y, opts);
 [er, bad] = nntest(nn, test_x, test_y);
 
