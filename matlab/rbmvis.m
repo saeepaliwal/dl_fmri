@@ -10,8 +10,8 @@ assert(rem(numbatches, 1) == 0, 'numbatches not integer');
 
 kk = randperm(m);
 err = 0;
-for l = 1: numbatches
-	
+%for l = 1: numbatches
+for l = 1	
 	batch = x(kk((l - 1) * opts.batchsize + 1 : l * opts.batchsize), :);
 	
 	v1 = batch;
@@ -32,13 +32,11 @@ for l = 1: numbatches
 	subplot(2,10,16:20);
 	imagesc(reshape(h2(1,:),10,10)); colormap('bone'); colorbar;
 	
-	%figure(101);
-	%visualize(rbm.W',[0 1],121,145);
+	figure(101);
+	visualize(rbm.W',[0 1],121,145);
 	
-	%figure;
-	%plot(rbm.errorRate);
+	figure;
+	plot(rbm.errorRate,'LineWidth',10,'LineSmoothing','on');
 	xlabel('Epochs')
 	ylabel('Average reconstruction error');
-	
-	pause(0.01);
 end
