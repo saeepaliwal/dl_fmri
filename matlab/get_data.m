@@ -1,4 +1,4 @@
-function get_data(dataFile, subjnum)
+function get_data(dataFile, subjnum, brainSlice)
 addpath('../../spm8')
 alldata = [];
 for j = 1:250
@@ -10,11 +10,15 @@ for j = 1:250
 		filename = ['swrest_00' sprintf('%d',j) '.nii'];
 	end
 	
-	dataFile = [dataFile filename];
+	fulldataFile = [dataFile filename]
 	
-	X = spm_read_vols(spm_vol(dataFile));
+	X = spm_read_vols(spm_vol(fulldataFile));
 	xx = X(:,:,brainSlice);
 	alldata = [alldata xx(:)];
 end
-
-save([
+if strfind(dataFile,'ag')
+filename = [ 'ag' sprintf('%d',subjnum) 'rest_' sprintf('%d',brainSlice)]
+elseif strfind(dataFile,'ant')
+filename = [ 'ant' sprintf('%d',subjnum) 'rest_' sprintf('%d',brainSlice)]
+end
+save(filename,'alldata');
