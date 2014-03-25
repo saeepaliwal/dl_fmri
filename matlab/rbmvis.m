@@ -27,10 +27,10 @@ for l = 1
 	imagesc(reshape(v2(1,:),121,145)); colormap('bone'); colorbar;
 	
 	subplot(2,10,11:15);
-	imagesc(reshape(h1(1,:),10,10)); colormap('bone'); colorbar;
+	imagesc(reshape(h1(1,:),50,10)); colormap('bone'); colorbar;
 	
 	subplot(2,10,16:20);
-	imagesc(reshape(h2(1,:),10,10)); colormap('bone'); colorbar;
+	imagesc(reshape(h2(1,:),50,10)); colormap('bone'); colorbar;
 	
 	figure(101);
 	visualize(rbm.W',[0 1],121,145);
